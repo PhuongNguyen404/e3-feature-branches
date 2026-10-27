@@ -5,7 +5,10 @@ const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 face.setAttribute("viewBox", "0 0 200 200");
 face.setAttribute("role", "img");
-face.setAttribute("aria-label", "A neutral face");
+face.setAttribute(
+  "aria-label",
+  "A curious alien face with glowing freckles",
+);
 
 const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
 head.setAttribute("cx", "100");
@@ -16,6 +19,27 @@ head.setAttribute("fill", "#f3cf87");
 head.setAttribute("stroke", "#302c29");
 head.setAttribute("stroke-width", "4");
 face.append(head);
+
+for (let i = 0; i < 120; i++) {
+  const angle = i * 2.39996;
+  const distance = Math.sqrt(i / 120) * 72;
+
+  const x = 100 + Math.cos(angle) * distance;
+  const y = 100 + Math.sin(angle) * distance;
+
+  const dot = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle",
+  );
+
+  dot.setAttribute("cx", String(x));
+  dot.setAttribute("cy", String(y));
+  dot.setAttribute("r", String(1 + (i % 3) * 0.4));
+  dot.setAttribute("fill", i % 2 === 0 ? "#52d6a4" : "#9874d3");
+  dot.setAttribute("opacity", "0.8");
+
+  face.append(dot);
+}
 
 const leftEye = document.createElementNS(
   "http://www.w3.org/2000/svg",
