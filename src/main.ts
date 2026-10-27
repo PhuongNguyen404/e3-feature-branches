@@ -1,11 +1,18 @@
 const portrait = document.querySelector<HTMLDivElement>("#portrait")!;
 const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 
+import planetUrl from "./Assets/planet.png?no-inline";
+
+import ufoUrl from "./Assets/ufo.png?no-inline";
+
 // The prototype grew inline. Keep it this way until the refactoring checkpoint.
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 face.setAttribute("viewBox", "0 0 200 200");
 face.setAttribute("role", "img");
-face.setAttribute("aria-label", "A neutral face");
+face.setAttribute(
+  "aria-label",
+  "A face with a UFO above its head and a planet next to it",
+);
 
 const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
 head.setAttribute("cx", "100");
@@ -58,6 +65,32 @@ mouth.setAttribute("stroke", "#302c29");
 mouth.setAttribute("stroke-width", "4");
 mouth.setAttribute("stroke-linecap", "round");
 face.append(mouth);
+
+// ufo.png - image downloaded from the internet
+// TODO: add original image URL, creator and license
+const ufo = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "image",
+);
+ufo.setAttribute("href", ufoUrl);
+ufo.setAttribute("x", "65");
+ufo.setAttribute("y", "0");
+ufo.setAttribute("width", "70");
+ufo.setAttribute("height", "45");
+face.append(ufo);
+
+// planet.png - image downloaded from the internet
+// TODO: add original image URL, creator and license
+const planet = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "image",
+);
+planet.setAttribute("href", planetUrl);
+planet.setAttribute("x", "145");
+planet.setAttribute("y", "115");
+planet.setAttribute("width", "50");
+planet.setAttribute("height", "50");
+face.append(planet);
 
 portrait.append(face);
 
